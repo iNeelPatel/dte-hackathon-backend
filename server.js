@@ -1,9 +1,36 @@
-const express = require("express");
+var express = require("express");
+var ParseServer = require("parse-server").ParseServer;
+var ParseDashboard = require("parse-dashboard");
 
-const app = express();
+var api = new ParseServer({
+  databaseURI: "mongodb://localhost:27017",
+  appId: "myAppId1",
+  fileKey: "myFileKey1",
+  masterKey: "mySecretMasterKey1"
+});
 
-app.get("/", (req, res) => res.send("Hello..!"));
+var options = { allowInsecureHTTP: false };
 
-const port = process.env.PORT || 5000;
+var dashboard = new ParseDashboard({
+  apps: [
+    {
+      serverURL: "http://localhost:1337/parse",
+      appId: "myAppId1",
+      masterKey: "myMasterKey1",
+      appName: "DTE"
+    }
+  ]
+});
 
-app.listen(port, () => console.log(`Server Running on port ${port}`));
+var app = express();
+
+// make the Parse Server available at /parse
+app.use("/parse", api);
+
+// make the Parse Dashboard available at /dashboard
+app.use("/dashboard", dashboard);
+
+var httpServer = require("http").createServer(app);
+httpServer.listen(4040);
+
+console.log("App is Running");
