@@ -17,9 +17,11 @@ var dashboard = new ParseDashboard({
       serverURL: "http://localhost:1337/parse",
       appId: "myAppId1",
       masterKey: "myMasterKey1",
+      iconName: "dte.png",
       appName: "DTE"
     }
-  ]
+  ],
+  iconsFolder: "src"
 });
 
 var app = express();
