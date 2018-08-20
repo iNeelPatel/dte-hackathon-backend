@@ -32,7 +32,7 @@ var api = new ParseServer({
 });
 
 // make the Parse Server available at /parse
-app.use("/parse", api);
+app.use("/api", api);
 
 var dashboard = new ParseDashboard(
   {
