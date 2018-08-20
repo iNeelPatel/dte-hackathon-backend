@@ -41,7 +41,8 @@ var dashboard = new ParseDashboard(
         serverURL: `${process.env.serverUrl}`,
         appId: process.env.appId,
         masterKey: process.env.masterKey,
-        appName: process.env.appName
+        appName: process.env.appName,
+        iconName: "dte.png"
       }
     ],
     users: [
@@ -49,9 +50,13 @@ var dashboard = new ParseDashboard(
         user: process.env.masterUsername,
         pass: process.env.masterPassword
       }
-    ]
+    ],
+    iconsFolder: "src"
   },
-  { allowInsecureHTTP: true }
+
+  {
+    allowInsecureHTTP: true
+  }
 );
 
 // make the Parse Dashboard available at /dashboard
