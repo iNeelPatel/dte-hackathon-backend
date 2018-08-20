@@ -65,4 +65,6 @@ app.use("/dashboard", dashboard);
 var httpServer = require("http").createServer(app);
 httpServer.listen(port);
 
+console.log("Running on port 1337");
+
 module.exports = app;
